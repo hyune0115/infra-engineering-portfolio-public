@@ -10,3 +10,7 @@
 
 - [GitLab Project Access Token 기반 인증 재설계](cicd/01-gitlab-pat-redesign.md)
 - [ArgoCD-GitLab 연쇄 장애 대응](cicd/02-argocd-gitlab-cascading-failure.md)
+
+### [iaas/](iaas/) - IaaS, 구축 자동화
+
+- [Kubernetes 클러스터 구성 자동화 4-Tier 리팩토링](iaas/01-k8s-install-automation-refactor.md)
