@@ -18,3 +18,4 @@
 ### [ops/](ops/) - 운영, 장애대응
 
 - [정전/유지보수 대응 서비스 중지·재기동 자동화](ops/01-service-maintenance-automation.md)
+- [Go 애플리케이션 재기동 시 좀비 프로세스/CPU 부하 대응](ops/02-go-zombie-process-graceful-shutdown.md)
