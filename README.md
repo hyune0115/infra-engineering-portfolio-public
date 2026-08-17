@@ -14,3 +14,7 @@
 ### [iaas/](iaas/) - IaaS, 구축 자동화
 
 - [Kubernetes 클러스터 구성 자동화 4-Tier 리팩토링](iaas/01-k8s-install-automation-refactor.md)
+
+### [ops/](ops/) - 운영, 장애대응
+
+- [정전/유지보수 대응 서비스 중지·재기동 자동화](ops/01-service-maintenance-automation.md)
