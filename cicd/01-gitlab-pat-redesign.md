@@ -26,7 +26,7 @@ TA Unit
 ### 다. 자동화 일관성
 1) **발급 표준화**: 설치 시 Ansible을 통한 PAT 자동발급으로 수동 발급·전달 오류 제거
 2) **재실행 안정성**: 토큰 존재 시 중복 발급 제거(멱등성 보장)
-3) **권한 분리**: 발급 주체(Ansible)와 사용 주체(patch pod, ArgoCD)를 분리해 발급 권한이 사용 주체에 없도록 설정
+3) **권한 분리**: 발급 주체(Ansible)와 사용 주체(Update Agent, ArgoCD)를 분리해 발급 권한이 사용 주체에 없도록 설정
 
 ### 라. AS-IS / TO-BE 비교
 
@@ -44,10 +44,10 @@ TA Unit
 ```
 단일 ROOT TOKEN (1개) — 전 프로젝트 공용, scope: 전역 / 만료: 공용
              │
-             ├── push ──▶ 고객사 A update pod
-             ├── push ──▶ 고객사 B update pod
-             ├── push ──▶ 고객사 C update pod
-             ├── push ──▶ 고객사 D update pod
+             ├── push ──▶ 고객사 A Update Agent
+             ├── push ──▶ 고객사 B Update Agent
+             ├── push ──▶ 고객사 C Update Agent
+             ├── push ──▶ 고객사 D Update Agent
              └── push ──▶ ... N
                               │
                               ▼
@@ -68,9 +68,9 @@ Ansible 컨트롤 노드 + 부트스트랩 토큰
              ▼
 K8s Secret (RBAC 최소화, 프로젝트별 push PAT 개별 발급)
              │  GIT_ASKPASS 국소 주입 (URL·config·로그·argv에 토큰 미기록)
-             ├── push ──▶ 고객사 A update pod ──▶ project A (해당 프로젝트만 접근)
-             ├── push ──▶ 고객사 B update pod ──▶ project B (해당 프로젝트만 접근)
-             └── push ──▶ 고객사 C update pod ──▶ project C (해당 프로젝트만 접근)
+             ├── push ──▶ 고객사 A Update Agent ──▶ project A (해당 프로젝트만 접근)
+             ├── push ──▶ 고객사 B Update Agent ──▶ project B (해당 프로젝트만 접근)
+             └── push ──▶ 고객사 C Update Agent ──▶ project C (해당 프로젝트만 접근)
                                                         ▲
                                                         │ pull: per-repo credential
                                                         │ (프로젝트별 read 전용 토큰)
@@ -83,7 +83,7 @@ K8s Secret (RBAC 최소화, 프로젝트별 push PAT 개별 발급)
 
 | 항목 | 내용 |
 |---|---|
-| 용도별 권한 수준 | git push(PATCH POD): `write_repository` / git pull(ArgoCD): `read_repository` / git API(부트스트랩): `api` |
+| 용도별 권한 수준 | git push(Update Agent): `write_repository` / git pull(ArgoCD): `read_repository` / git API(부트스트랩): `api` |
 | 명명 규칙 | push: `ansible-managed-token-push-<고객코드>` / pull: `ansible-managed-token-pull-<고객코드>` |
 | 중복 판정 기준 | token id + active 상태 |
 | 발급 주체 | 프로젝트 그룹 Maintainer 권한을 가진 전용 부트스트랩 계정 |
