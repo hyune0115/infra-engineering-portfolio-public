@@ -1,6 +1,6 @@
 # GitLab Project Access Token 기반 인증 재설계
 
-TA Unit · 2026.08
+TA Unit
 
 ## 1. 배경
 

@@ -1,6 +1,6 @@
 # ArgoCD-GitLab 연쇄 장애 대응
 
-TA Unit · 2025.10
+TA Unit
 
 ## 1. 배경
 
