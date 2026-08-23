@@ -21,6 +21,7 @@
 - [Go 애플리케이션 재기동 시 좀비 프로세스/CPU 부하 대응](ops/02-go-zombie-process-graceful-shutdown.md)
 - [컨테이너 레지스트리 CDN 매니페스트 캐싱 이슈 대응](ops/03-registry-cdn-manifest-cache-bypass.md)
 - [MariaDB Pod Healthcheck Probe 개선 — TCP → Exec 전환](ops/04-mariadb-healthcheck-probe-tcp-abort.md)
+- [고객사 NAC 장비 ARP 갱신 × Ingress 개별 IP 광고 충돌 대응](ops/05-nac-arp-mac-floating-conflict.md)
 
 ### [monitoring/](monitoring/) - 모니터링, 관측성
 
