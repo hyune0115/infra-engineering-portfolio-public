@@ -20,3 +20,4 @@
 - [정전/유지보수 대응 서비스 중지·재기동 자동화](ops/01-service-maintenance-automation.md)
 - [Go 애플리케이션 재기동 시 좀비 프로세스/CPU 부하 대응](ops/02-go-zombie-process-graceful-shutdown.md)
 - [컨테이너 레지스트리 CDN 매니페스트 캐싱 이슈 대응](ops/03-registry-cdn-manifest-cache-bypass.md)
+- [MariaDB Pod Healthcheck Probe 개선 — TCP → Exec 전환](ops/04-mariadb-healthcheck-probe-tcp-abort.md)
