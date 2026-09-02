@@ -80,7 +80,7 @@
   </g>
 
   <!-- NLB -> EC2 direct (bypass ALB, other ports) -->
-  <path d="M410,265 L410,380 L995,380 L995,300" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
+  <path d="M410,265 L410,380 L995,380 L995,281" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
   <g font-size="10.5" fill="#334155">
     <text x="430" y="315">54321 &#8594; 31030</text>
     <text x="430" y="329">11887 &#8594; 31015</text>
