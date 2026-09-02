@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="900" height="380" fill="#ffffff"/>
+
+  <!-- 사용자 -->
+  <rect x="30" y="150" width="140" height="70" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="100" y="180" text-anchor="middle" font-size="15" fill="#1e1b4b">사용자</text>
+  <text x="100" y="200" text-anchor="middle" font-size="12" fill="#4338ca">443, 화상회의 등</text>
+
+  <line x1="170" y1="185" x2="270" y2="185" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- NLB -->
+  <rect x="280" y="130" width="200" height="110" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="380" y="160" text-anchor="middle" font-size="15" font-weight="bold" fill="#7c2d12">Network Load Balancer</text>
+  <text x="380" y="182" text-anchor="middle" font-size="12" fill="#9a3412">(L4)</text>
+  <text x="380" y="202" text-anchor="middle" font-size="12" fill="#9a3412">포트별 NodePort 그대로 포워딩</text>
+  <text x="380" y="220" text-anchor="middle" font-size="12" fill="#9a3412">URL 기반 라우팅 불가</text>
+
+  <line x1="480" y1="185" x2="580" y2="185" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- EC2 -->
+  <rect x="590" y="140" width="160" height="90" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="670" y="175" text-anchor="middle" font-size="15" font-weight="bold" fill="#064e3b">EC2</text>
+  <text x="670" y="197" text-anchor="middle" font-size="12" fill="#065f46">(Kubernetes Node)</text>
+
+  <!-- 한계 박스 -->
+  <rect x="280" y="270" width="470" height="90" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="300" y="295" font-size="13" font-weight="bold" fill="#991b1b">한계</text>
+  <text x="300" y="317" font-size="12.5" fill="#7f1d1d">- 웹/화상회의가 같은 포트(80/443)를 URL로 구분하는데, L7 라우팅이 없어 화상회의 사용 불가</text>
+  <text x="300" y="337" font-size="12.5" fill="#7f1d1d">- ALB 부재로 HTTP → HTTPS 리다이렉트 불가 (사용자가 https:// 직접 입력 필요)</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+  </defs>
+
+  <text x="450" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#111827">NLB 단독 구성</text>
+</svg>
