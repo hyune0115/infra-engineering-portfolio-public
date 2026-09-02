@@ -1,50 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 420" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
-  <rect width="980" height="420" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 470" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="1180" height="470" fill="#ffffff"/>
+  <text x="30" y="34" font-size="18" font-weight="bold" fill="#111827">2. NLB + ALB 구성 (AWS, host 기준 라우팅 필요 시)</text>
 
-  <text x="490" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#111827">NLB + ALB 구성</text>
+  <!-- Cloud boundary -->
+  <rect x="240" y="60" width="900" height="390" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="255" y="82" font-size="12.5" font-weight="bold" fill="#475569">Public Cloud (AWS)</text>
+
+  <!-- 관리자 -->
+  <circle cx="70" cy="95" r="16" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="70" y="130" text-anchor="middle" font-size="12.5" fill="#1e293b">관리자</text>
+  <line x1="100" y1="95" x2="1080" y2="95" stroke="#334155" stroke-width="1.5"/>
+  <text x="590" y="88" text-anchor="middle" font-size="11.5" fill="#334155">SSH</text>
+  <line x1="1080" y1="95" x2="1080" y2="220" stroke="#334155" stroke-width="1.5" marker-end="url(#a2)"/>
 
   <!-- 사용자 -->
-  <rect x="20" y="170" width="140" height="80" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="90" y="205" text-anchor="middle" font-size="15" fill="#1e1b4b">사용자</text>
-  <text x="90" y="225" text-anchor="middle" font-size="11.5" fill="#4338ca">80/443/화상회의</text>
-  <text x="90" y="240" text-anchor="middle" font-size="11.5" fill="#4338ca">그 외 포트</text>
+  <circle cx="55" cy="230" r="13" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <path d="M35,255 q20,-18 40,0" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="80" cy="230" r="13" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <path d="M60,255 q20,-18 40,0" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="65" y="280" text-anchor="middle" font-size="12.5" fill="#1e293b">사용자</text>
 
-  <!-- 상단 경로: ALB -->
-  <line x1="160" y1="190" x2="260" y2="120" stroke="#334155" stroke-width="2" marker-end="url(#arrow2)"/>
-  <text x="195" y="145" font-size="11" fill="#334155">80/443/화상회의</text>
+  <!-- port list (사용자) -->
+  <g font-size="11.5" fill="#334155" text-anchor="middle">
+    <text x="180" y="140">80</text>
+    <text x="180" y="156">443</text>
+    <text x="180" y="172">18085</text>
+    <text x="180" y="188">54321</text>
+    <text x="180" y="204">11887</text>
+    <text x="180" y="220">10000</text>
+    <text x="180" y="236">143</text>
+    <text x="180" y="252">993</text>
+    <text x="180" y="268">110</text>
+    <text x="180" y="284">995</text>
+    <text x="180" y="300">25</text>
+    <text x="180" y="316">587</text>
+    <text x="180" y="332">465</text>
+  </g>
+  <line x1="220" y1="230" x2="290" y2="230" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
 
-  <rect x="270" y="70" width="220" height="110" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-  <text x="380" y="98" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e3a8a">Application Load Balancer</text>
-  <text x="380" y="118" text-anchor="middle" font-size="11.5" fill="#1e40af">SSL 인증서 등록·오프로드</text>
-  <text x="380" y="136" text-anchor="middle" font-size="11.5" fill="#1e40af">HTTP → HTTPS 리다이렉트</text>
-  <text x="380" y="154" text-anchor="middle" font-size="11.5" fill="#1e40af">host 기준 라우팅</text>
-  <text x="380" y="172" text-anchor="middle" font-size="11.5" fill="#1e40af">(웹 / 화상회의 도메인 분기)</text>
+  <!-- NLB -->
+  <rect x="290" y="190" width="120" height="90" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="350" y="228" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c2d12">Network</text>
+  <text x="350" y="244" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c2d12">Load</text>
+  <text x="350" y="260" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c2d12">Balancer</text>
 
-  <line x1="490" y1="125" x2="600" y2="180" stroke="#334155" stroke-width="2" marker-end="url(#arrow2)"/>
+  <!-- NLB -> ALB (solid: host routing target ports) -->
+  <line x1="410" y1="200" x2="590" y2="200" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
+  <g font-size="10.5" fill="#334155">
+    <text x="420" y="172">80 &#8594; 80</text>
+    <text x="420" y="186">443 &#8594; 443</text>
+    <text x="420" y="198">18085 &#8594; 18085</text>
+    <text x="420" y="212" font-style="italic" fill="#64748b">(groupware.example.com)</text>
+  </g>
+  <!-- NLB -> ALB (dashed: jitsi) -->
+  <line x1="410" y1="225" x2="590" y2="225" stroke="#334155" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a2)"/>
+  <g font-size="10.5" fill="#334155">
+    <text x="420" y="240">443 &#8594; 443</text>
+    <text x="420" y="253" font-style="italic" fill="#64748b">(jitsi.example.com)</text>
+  </g>
 
-  <!-- 하단 경로: NLB -->
-  <line x1="160" y1="230" x2="260" y2="300" stroke="#334155" stroke-width="2" marker-end="url(#arrow2)"/>
-  <text x="170" y="275" font-size="11" fill="#334155">알림/문서중앙화 등</text>
+  <!-- ALB -->
+  <rect x="600" y="190" width="130" height="90" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="665" y="222" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Application</text>
+  <text x="665" y="238" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Load</text>
+  <text x="665" y="254" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Balancer</text>
 
-  <rect x="270" y="260" width="220" height="90" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
-  <text x="380" y="288" text-anchor="middle" font-size="14" font-weight="bold" fill="#7c2d12">Network Load Balancer</text>
-  <text x="380" y="308" text-anchor="middle" font-size="11.5" fill="#9a3412">(L4)</text>
-  <text x="380" y="326" text-anchor="middle" font-size="11.5" fill="#9a3412">포트별 NodePort 직접 포워딩</text>
+  <!-- ALB -> EC2 (solid) -->
+  <line x1="730" y1="200" x2="920" y2="200" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
+  <g font-size="10.5" fill="#334155">
+    <text x="740" y="172">443 &#8594; 80</text>
+    <text x="740" y="185">80 &#8594; 31013</text>
+    <text x="740" y="198">18085 &#8594; 30345</text>
+  </g>
+  <!-- ALB -> EC2 (dashed jitsi) -->
+  <line x1="730" y1="225" x2="920" y2="225" stroke="#334155" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a2)"/>
+  <g font-size="10.5" fill="#334155">
+    <text x="740" y="240">443 &#8594; 80</text>
+    <text x="740" y="253">80 &#8594; 31013</text>
+  </g>
 
-  <line x1="490" y1="305" x2="600" y2="240" stroke="#334155" stroke-width="2" marker-end="url(#arrow2)"/>
+  <!-- NLB -> EC2 direct (bypass ALB, other ports) -->
+  <path d="M410,265 L410,380 L995,380 L995,300" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
+  <g font-size="10.5" fill="#334155">
+    <text x="430" y="315">54321 &#8594; 31030</text>
+    <text x="430" y="329">11887 &#8594; 31015</text>
+    <text x="430" y="343">10000 &#8594; 31023</text>
+    <text x="430" y="357">25 &#8594; 31024</text>
+    <text x="640" y="315">587 &#8594; 31025</text>
+    <text x="640" y="329">465 &#8594; 31026</text>
+    <text x="640" y="343">143 &#8594; 31027</text>
+    <text x="640" y="357">993 &#8594; 31028</text>
+    <text x="850" y="315">110 &#8594; 31029</text>
+    <text x="850" y="329">995 &#8594; 31031</text>
+  </g>
 
   <!-- EC2 -->
-  <rect x="610" y="170" width="180" height="100" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-  <text x="700" y="210" text-anchor="middle" font-size="15" font-weight="bold" fill="#064e3b">EC2</text>
-  <text x="700" y="232" text-anchor="middle" font-size="12" fill="#065f46">(Kubernetes Node)</text>
-  <text x="700" y="250" text-anchor="middle" font-size="11" fill="#065f46">NodePort로 전달</text>
-
-  <!-- 해결 박스 -->
-  <rect x="20" y="370" width="770" height="40" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.2" stroke-dasharray="4 3"/>
-  <text x="35" y="395" font-size="12.5" fill="#065f46">해결: 온프레미스용 "인바운드 프록시(웹/모바일)" 구성을 ALB 역할로 재사용 → 화상회의 라우팅·HTTPS 리다이렉트 문제 모두 해소</text>
+  <rect x="930" y="190" width="130" height="90" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="995" y="230" text-anchor="middle" font-size="13" font-weight="bold" fill="#064e3b">EC2</text>
+  <text x="995" y="248" text-anchor="middle" font-size="10" fill="#065f46">(Kubernetes Node)</text>
 
   <defs>
-    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
     </marker>
   </defs>

@@ -1,55 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 340" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
-  <rect width="1160" height="340" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 470" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="1300" height="470" fill="#ffffff"/>
+  <text x="30" y="34" font-size="18" font-weight="bold" fill="#111827">3. MetalLB + Traefik + 인바운드 프록시 구성 (AWS 외)</text>
 
-  <text x="580" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#111827">MetalLB + Traefik + 인바운드 프록시 구성 (AWS 외 클라우드)</text>
+  <!-- Cloud boundary -->
+  <rect x="240" y="60" width="1020" height="390" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="255" y="82" font-size="12.5" font-weight="bold" fill="#475569">Public Cloud (AWS 외)</text>
+
+  <!-- 관리자 -->
+  <circle cx="70" cy="95" r="16" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="70" y="130" text-anchor="middle" font-size="12.5" fill="#1e293b">관리자</text>
+  <line x1="100" y1="95" x2="1200" y2="95" stroke="#334155" stroke-width="1.5"/>
+  <text x="650" y="88" text-anchor="middle" font-size="11.5" fill="#334155">SSH</text>
+  <line x1="1200" y1="95" x2="1200" y2="220" stroke="#334155" stroke-width="1.5" marker-end="url(#a3)"/>
 
   <!-- 사용자 -->
-  <rect x="15" y="120" width="120" height="70" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="75" y="150" text-anchor="middle" font-size="13.5" fill="#1e1b4b">사용자</text>
-  <text x="75" y="168" text-anchor="middle" font-size="10.5" fill="#4338ca">80/443/화상회의</text>
+  <circle cx="55" cy="230" r="13" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <path d="M35,255 q20,-18 40,0" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="80" cy="230" r="13" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <path d="M60,255 q20,-18 40,0" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="65" y="280" text-anchor="middle" font-size="12.5" fill="#1e293b">사용자</text>
 
-  <line x1="135" y1="155" x2="200" y2="155" stroke="#334155" stroke-width="2" marker-end="url(#arrow4)"/>
+  <!-- port list (사용자) -->
+  <g font-size="11.5" fill="#334155" text-anchor="middle">
+    <text x="180" y="140">80</text>
+    <text x="180" y="156">443</text>
+    <text x="180" y="172">18085</text>
+    <text x="180" y="188">54321</text>
+    <text x="180" y="204">11887</text>
+    <text x="180" y="220">10000</text>
+    <text x="180" y="236">143</text>
+    <text x="180" y="252">993</text>
+    <text x="180" y="268">110</text>
+    <text x="180" y="284">995</text>
+    <text x="180" y="300">25</text>
+    <text x="180" y="316">587</text>
+    <text x="180" y="332">465</text>
+  </g>
+  <line x1="220" y1="230" x2="290" y2="230" stroke="#334155" stroke-width="2" marker-end="url(#a3)"/>
 
   <!-- NLB -->
-  <rect x="210" y="120" width="150" height="70" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
-  <text x="285" y="148" text-anchor="middle" font-size="13" font-weight="bold" fill="#7c2d12">NLB (L4)</text>
-  <text x="285" y="166" text-anchor="middle" font-size="10.5" fill="#9a3412">타겟 = nginx 노드 IP</text>
+  <rect x="290" y="195" width="110" height="80" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="345" y="228" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c2d12">Network</text>
+  <text x="345" y="243" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c2d12">Load</text>
+  <text x="345" y="258" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c2d12">Balancer</text>
 
-  <line x1="360" y1="155" x2="425" y2="155" stroke="#334155" stroke-width="2" marker-end="url(#arrow4)"/>
+  <!-- NLB -> nginx (all ports, unchanged) -->
+  <line x1="400" y1="230" x2="480" y2="230" stroke="#334155" stroke-width="2" marker-end="url(#a3)"/>
+  <text x="440" y="212" text-anchor="middle" font-size="10" fill="#64748b">전체 포트</text>
+  <text x="440" y="252" text-anchor="middle" font-size="10" fill="#64748b">타겟 = nginx 노드 IP</text>
 
   <!-- nginx -->
-  <rect x="435" y="120" width="150" height="70" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
-  <text x="510" y="145" text-anchor="middle" font-size="13" font-weight="bold" fill="#4c1d95">nginx 프록시</text>
-  <text x="510" y="163" text-anchor="middle" font-size="10" fill="#5b21b6">단순 중계 (라우팅 없음)</text>
+  <rect x="490" y="195" width="110" height="80" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="545" y="230" text-anchor="middle" font-size="12" font-weight="bold" fill="#4c1d95">nginx</text>
+  <text x="545" y="246" text-anchor="middle" font-size="10" fill="#5b21b6">(단순 중계)</text>
 
-  <line x1="585" y1="155" x2="650" y2="155" stroke="#334155" stroke-width="2" marker-end="url(#arrow4)"/>
+  <!-- nginx -> MetalLB VIP -->
+  <line x1="600" y1="230" x2="680" y2="230" stroke="#334155" stroke-width="2" marker-end="url(#a3)"/>
+  <text x="640" y="212" text-anchor="middle" font-size="10" fill="#64748b">포트 동일 전달</text>
 
   <!-- MetalLB VIP -->
-  <rect x="660" y="120" width="150" height="70" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
-  <text x="735" y="145" text-anchor="middle" font-size="13" font-weight="bold" fill="#7c2d12">MetalLB VIP</text>
-  <text x="735" y="163" text-anchor="middle" font-size="10" fill="#9a3412">(L4, 내부망)</text>
+  <rect x="690" y="195" width="120" height="80" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="750" y="228" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c2d12">MetalLB</text>
+  <text x="750" y="243" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7c2d12">VIP</text>
+  <text x="750" y="258" text-anchor="middle" font-size="10" fill="#9a3412">(내부망)</text>
 
-  <line x1="810" y1="155" x2="875" y2="155" stroke="#334155" stroke-width="2" marker-end="url(#arrow4)"/>
+  <!-- MetalLB VIP -> Traefik (solid: host routing) -->
+  <line x1="810" y1="215" x2="890" y2="215" stroke="#334155" stroke-width="2" marker-end="url(#a3)"/>
+  <g font-size="10" fill="#334155">
+    <text x="815" y="195">80/443/18085</text>
+    <text x="815" y="208" font-style="italic" fill="#64748b">(groupware.example.com)</text>
+  </g>
+  <!-- dashed jitsi -->
+  <line x1="810" y1="245" x2="890" y2="245" stroke="#334155" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a3)"/>
+  <g font-size="10" fill="#334155">
+    <text x="815" y="262">443</text>
+    <text x="850" y="262" font-style="italic" fill="#64748b">(jitsi.example.com)</text>
+  </g>
 
   <!-- Traefik -->
-  <rect x="885" y="105" width="180" height="100" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-  <text x="975" y="130" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">Traefik (Ingress)</text>
-  <text x="975" y="148" text-anchor="middle" font-size="10" fill="#1e40af">L7 — host 기준 라우팅</text>
-  <text x="975" y="164" text-anchor="middle" font-size="10" fill="#1e40af">SSL 오프로드</text>
-  <text x="975" y="180" text-anchor="middle" font-size="10" fill="#1e40af">HTTP→HTTPS 리다이렉트</text>
+  <rect x="900" y="195" width="120" height="80" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="960" y="228" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Traefik</text>
+  <text x="960" y="244" text-anchor="middle" font-size="10" fill="#1e40af">(Ingress)</text>
 
-  <line x1="975" y1="205" x2="975" y2="240" stroke="#334155" stroke-width="2" marker-end="url(#arrow4)"/>
-  <rect x="915" y="245" width="120" height="45" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-  <text x="975" y="272" text-anchor="middle" font-size="12" font-weight="bold" fill="#064e3b">Pod</text>
+  <!-- Traefik -> EC2/Pod -->
+  <line x1="1020" y1="230" x2="1090" y2="230" stroke="#334155" stroke-width="2" marker-end="url(#a3)"/>
 
-  <!-- note -->
-  <rect x="15" y="250" width="870" height="70" rx="8" fill="#fefce8" stroke="#ca8a04" stroke-width="1.2" stroke-dasharray="4 3"/>
-  <text x="30" y="270" font-size="11.5" fill="#713f12">이유: (1) NLB→ALB 타겟팅 기능이 AWS 전용 (2) 클라우드 NLB의 타겟 설정 UI가 MetalLB의</text>
-  <text x="30" y="287" font-size="11.5" fill="#713f12">floating VIP를 타겟 타입으로 지원하지 않음(MSP 정책이 아닌 플랫폼 UI 제약) — 두 제약을</text>
-  <text x="30" y="304" font-size="11.5" fill="#713f12">nginx가 NLB와 MetalLB VIP 사이를 단순 중계하는 방식으로 우회, 온프레미스 구성을 그대로 재사용</text>
+  <!-- EC2 -->
+  <rect x="1100" y="195" width="120" height="80" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="1160" y="230" text-anchor="middle" font-size="12" font-weight="bold" fill="#064e3b">EC2</text>
+  <text x="1160" y="248" text-anchor="middle" font-size="9.5" fill="#065f46">(Kubernetes Node)</text>
+
+  <!-- NLB -> nginx other ports 직접 통과 표시 -->
+  <g font-size="10.5" fill="#334155">
+    <text x="440" y="330">54321, 11887, 10000,</text>
+    <text x="440" y="346">25, 587, 465, 143,</text>
+    <text x="440" y="362">993, 110, 995</text>
+    <text x="440" y="382" fill="#64748b" font-style="italic">host 라우팅 불필요 포트는</text>
+    <text x="440" y="396" fill="#64748b" font-style="italic">nginx→VIP까지만 전달, Traefik 미거침</text>
+  </g>
 
   <defs>
-    <marker id="arrow4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <marker id="a3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
     </marker>
   </defs>

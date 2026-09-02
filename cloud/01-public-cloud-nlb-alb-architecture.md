@@ -11,7 +11,8 @@ TA Unit
 2) NLB + ALB 조합이 로드밸런싱 구성의 best practice이지만, NLB의 타겟 그룹으로 ALB를
    등록해 L4와 L7을 하나의 진입점으로 묶는 기능 자체가 AWS Elastic Load Balancing 고유
    기능이라 다른 퍼블릭 클라우드(GCP, Azure 등)에는 동일하게 적용할 수 없음 — 특정
-   클라우드에 종속되지 않는 **공통 아키텍처**가 필요했음
+   클라우드에 종속되지 않고 어디에서나 동일한 서비스 범위(HTTP 기반 서비스인 웹/화상회의,
+   그 외 TCP 기반 서비스)를 제공할 수 있는 **공통 아키텍처**가 필요했음
 3) 고객사마다 클라우드 종류와 화상회의 서비스 사용 여부가 달라, 상황별로 선택 가능한 표준
    구성안을 마련하는 방향으로 설계
 
@@ -47,9 +48,20 @@ TA Unit
 
 ![NLB 단독 구성](./images/01-nlb-only.svg)
 
+- client IP 보존 필요 (NLB : Proxy Protocol 설정 필수)
+- NLB: s-nat(NAT Loopback) 설정 및 SSL 인증서 등록, SSL Offloading 설정
+- ALB 미구성으로 HTTP → HTTPS 리다이렉트 불가 (웹 브라우저 URL 입력 시 `https://` 직접 입력 필요)
+
 ### 나. 옵션 2 — NLB + ALB 구성 (AWS, best practice)
 
 ![NLB + ALB 구성](./images/02-nlb-alb.svg)
+
+- client IP 보존 필요 (NLB : Proxy Protocol, ALB : X-Forwarded-For 설정 필수)
+- NLB: s-nat(NAT Loopback) 설정. host 기준 라우팅이 필요한 HTTP 포트(웹/화상회의)는 ALB로
+  전달(SSL Pass-through), 그 외 TCP 기반 포트는 서버로 직접 전달
+- ALB: SSL 인증서 등록 및 SSL Offloading, HTTP → HTTPS 리다이렉트, host-based routing 설정
+- 다만 이 구성은 NLB가 ALB를 타겟 그룹으로 직접 등록하는 AWS 전용 기능에 기반하므로, AWS
+  환경에서만 적용 가능
 
 ### 다. 옵션 3 — MetalLB + Traefik + 인바운드 프록시 구성 (AWS 외)
 
@@ -59,6 +71,13 @@ NLB가 ALB를 타겟으로 잡는 기능과 MetalLB의 floating VIP를 타겟으
 동일하게 Traefik이 담당하도록 구성했습니다.
 
 ![MetalLB + Traefik + 인바운드 프록시 구성](./images/03-inbound-proxy.svg)
+
+- client IP 보존: NLB는 Proxy Protocol, Traefik은 X-Forwarded-For로 각각 보존 (nginx는 단순
+  중계만 하므로 별도 헤더 처리 없음)
+- nginx: host 기준 라우팅이 필요한 HTTP 포트(웹/화상회의)와 그 외 TCP 기반 포트 모두 동일하게
+  MetalLB VIP로 전달만 하고, 실제 분기는 뒤단 Traefik이 담당
+- Traefik: SSL 인증서 등록 및 SSL Offloading, HTTP → HTTPS 리다이렉트, host-based routing 설정
+  (온프레미스와 동일)
 
 ## 4. 성과
 
