@@ -14,8 +14,9 @@
   ([자세히](cicd/02-argocd-gitlab-cascading-failure.md))
 - **Kubernetes 클러스터 구성 자동화 4-Tier 리팩토링** — 설치 소요시간 약 20% 단축, 전체 신규
   구축 표준으로 적용 ([자세히](iaas/01-k8s-install-automation-refactor.md))
-- **MariaDB Healthcheck Probe 개선** — 문제성 로그(750MB+/13만 건 이상) 완전 제거, 전체
-  MariaDB 배포 표준으로 반영 ([자세히](ops/04-mariadb-healthcheck-probe-tcp-abort.md))
+- **대규모 고객사 솔루션 신규 구축 프로젝트 리딩** — 6개 이상 클러스터 규모의 구축 프로젝트를
+  설치계획부터 오픈 지원까지 전 주기 단독 리딩, 정상 서비스 오픈으로 완료
+  ([자세히](project/01-solution-installation-project-lead.md))
 
 ### 기술적 문제 해결 사례
 
