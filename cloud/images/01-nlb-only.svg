@@ -1,70 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 340" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
-  <rect width="1180" height="340" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="900" height="280" fill="#ffffff"/>
   <text x="30" y="34" font-size="18" font-weight="bold" fill="#111827">1. NLB 단독 구성 (화상회의 미사용)</text>
 
   <!-- Cloud boundary -->
-  <rect x="240" y="60" width="900" height="240" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>
-  <text x="255" y="82" font-size="12.5" font-weight="bold" fill="#475569">Public Cloud</text>
+  <rect x="240" y="55" width="620" height="200" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="255" y="76" font-size="12.5" font-weight="bold" fill="#475569">Public Cloud</text>
 
   <!-- 관리자 -->
-  <circle cx="70" cy="95" r="16" fill="none" stroke="#2563eb" stroke-width="2"/>
-  <text x="70" y="130" text-anchor="middle" font-size="12.5" fill="#1e293b">관리자</text>
-  <line x1="100" y1="95" x2="1080" y2="95" stroke="#334155" stroke-width="1.5"/>
-  <text x="590" y="88" text-anchor="middle" font-size="11.5" fill="#334155">SSH</text>
-  <line x1="1080" y1="95" x2="1080" y2="230" stroke="#334155" stroke-width="1.5" marker-end="url(#a1)"/>
+  <circle cx="70" cy="90" r="16" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="70" y="124" text-anchor="middle" font-size="12.5" fill="#1e293b">관리자</text>
+  <line x1="100" y1="90" x2="790" y2="90" stroke="#334155" stroke-width="1.5"/>
+  <text x="450" y="83" text-anchor="middle" font-size="11.5" fill="#334155">SSH</text>
+  <line x1="790" y1="90" x2="790" y2="150" stroke="#334155" stroke-width="1.5" marker-end="url(#a1)"/>
 
   <!-- 사용자 -->
-  <circle cx="55" cy="230" r="13" fill="none" stroke="#2563eb" stroke-width="2"/>
-  <path d="M35,255 q20,-18 40,0" fill="none" stroke="#2563eb" stroke-width="2"/>
-  <circle cx="80" cy="230" r="13" fill="none" stroke="#2563eb" stroke-width="2"/>
-  <path d="M60,255 q20,-18 40,0" fill="none" stroke="#2563eb" stroke-width="2"/>
-  <text x="65" y="280" text-anchor="middle" font-size="12.5" fill="#1e293b">사용자</text>
+  <circle cx="55" cy="170" r="13" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <path d="M35,195 q20,-18 40,0" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="80" cy="170" r="13" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <path d="M60,195 q20,-18 40,0" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="65" y="220" text-anchor="middle" font-size="12.5" fill="#1e293b">사용자</text>
 
-  <!-- port list (사용자) -->
-  <g font-size="11.5" fill="#334155" text-anchor="middle">
-    <text x="180" y="150">443</text>
-    <text x="180" y="166">18085</text>
-    <text x="180" y="182">54321</text>
-    <text x="180" y="198">11887</text>
-    <text x="180" y="214">10000</text>
-    <text x="180" y="230">143</text>
-    <text x="180" y="246">993</text>
-    <text x="180" y="262">110</text>
-    <text x="180" y="278">995</text>
-    <text x="180" y="294">25</text>
-    <text x="180" y="310">587</text>
-    <text x="180" y="326">465</text>
-  </g>
-  <line x1="220" y1="230" x2="290" y2="230" stroke="#334155" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="100" y1="170" x2="280" y2="170" stroke="#334155" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="190" y="160" text-anchor="middle" font-size="11.5" fill="#334155">TCP</text>
 
   <!-- NLB -->
-  <rect x="290" y="180" width="130" height="100" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
-  <text x="355" y="222" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#7c2d12">Network</text>
-  <text x="355" y="238" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#7c2d12">Load</text>
-  <text x="355" y="254" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#7c2d12">Balancer</text>
+  <rect x="290" y="130" width="140" height="80" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="360" y="163" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#7c2d12">Network</text>
+  <text x="360" y="179" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#7c2d12">Load Balancer</text>
+  <text x="360" y="195" text-anchor="middle" font-size="10.5" fill="#9a3412">(L4)</text>
 
-  <line x1="420" y1="230" x2="640" y2="230" stroke="#334155" stroke-width="2" marker-end="url(#a1)"/>
-
-  <!-- port mapping list -->
-  <g font-size="11" fill="#334155">
-    <text x="640" y="150">443&#160;&#160;&#160;-&gt; 31013</text>
-    <text x="640" y="166">54321 -&gt; 31030</text>
-    <text x="640" y="182">11887 -&gt; 31015</text>
-    <text x="640" y="198">18085 -&gt; 30345</text>
-    <text x="640" y="214">10000 -&gt; 31018</text>
-    <text x="640" y="230">25&#160;&#160;&#160;&#160;-&gt; 31023</text>
-    <text x="640" y="246">587&#160;&#160;&#160;-&gt; 31024</text>
-    <text x="640" y="262">465&#160;&#160;&#160;-&gt; 31025</text>
-    <text x="640" y="278">143&#160;&#160;&#160;-&gt; 31026</text>
-    <text x="640" y="294">993&#160;&#160;&#160;-&gt; 31027</text>
-    <text x="640" y="310">110&#160;&#160;&#160;-&gt; 31028</text>
-    <text x="640" y="326">995&#160;&#160;&#160;-&gt; 31029</text>
-  </g>
+  <line x1="430" y1="170" x2="600" y2="170" stroke="#334155" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="515" y="160" text-anchor="middle" font-size="11.5" fill="#334155">TCP (NodePort 그대로 전달)</text>
 
   <!-- EC2 -->
-  <rect x="920" y="200" width="140" height="80" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-  <text x="990" y="235" text-anchor="middle" font-size="13" font-weight="bold" fill="#064e3b">EC2</text>
-  <text x="990" y="253" text-anchor="middle" font-size="10.5" fill="#065f46">(Kubernetes Node)</text>
+  <rect x="610" y="130" width="140" height="80" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="680" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#064e3b">EC2</text>
+  <text x="680" y="183" text-anchor="middle" font-size="10.5" fill="#065f46">(Kubernetes Node)</text>
 
   <defs>
     <marker id="a1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
