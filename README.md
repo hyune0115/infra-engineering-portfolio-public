@@ -4,6 +4,31 @@
 각 문서는 배경 → 기대효과/AS-IS-TO-BE → 구성도 → 성과 순으로 정리되어 있습니다.
 (상세 기술 문서는 비공개로 별도 관리 중이며, 필요 시 요청하시면 공유드립니다.)
 
+## Summary
+
+### 핵심 성과
+
+- **GitLab PAT 기반 인증 재설계** — 토큰 유출 시 영향범위를 전체 750개 프로젝트에서 1개
+  프로젝트로 축소 ([자세히](cicd/01-gitlab-pat-redesign.md))
+- **ArgoCD-GitLab 연쇄 장애 대응** — 일일 장애 발생 고객사 75-80% 감소
+  ([자세히](cicd/02-argocd-gitlab-cascading-failure.md))
+- **Kubernetes 클러스터 구성 자동화 4-Tier 리팩토링** — 설치 소요시간 약 20% 단축, 전체 신규
+  구축 표준으로 적용 ([자세히](iaas/01-k8s-install-automation-refactor.md))
+- **MariaDB Healthcheck Probe 개선** — 문제성 로그(750MB+/13만 건 이상) 완전 제거, 전체
+  MariaDB 배포 표준으로 반영 ([자세히](ops/04-mariadb-healthcheck-probe-tcp-abort.md))
+
+### 기술적 문제 해결 사례
+
+- **네트워크 계층** — 고객사 NAC 장비의 주기적 ARP 갱신과 Ingress의 노드별 개별 MAC 광고가
+  충돌해 발생한 서비스 접속 장애를, 패킷 덤프 기반으로 여러 원인 후보를 배제해가며 근본 원인을
+  특정하고 MetalLB 도입으로 해결 ([자세히](ops/05-nac-arp-mac-floating-conflict.md))
+- **애플리케이션-인프라 연계 계층** — 대량 reconciliation이 유발한 GitLab 부하 → HTTP 502 →
+  git credential 자동 삭제로 이어지는 연쇄 장애 구조를 ArgoCD/GitLab 로그 교차 분석으로 규명
+  ([자세히](cicd/02-argocd-gitlab-cascading-failure.md))
+- **OS/프로세스 계층** — TCP probe가 MySQL 핸드셰이크 없이 연결을 열고 닫아 발생하던 Aborted
+  connect 로그 폭증의 원인을 규명하고, exec 기반 probe로 전환해 근본적으로 해결
+  ([자세히](ops/04-mariadb-healthcheck-probe-tcp-abort.md))
+
 ## 목차
 
 ### [cicd/](cicd/) - CI/CD, GitOps
