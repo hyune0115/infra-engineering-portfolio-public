@@ -55,3 +55,7 @@
 ### [cloud/](cloud/) - 퍼블릭 클라우드, 아키텍처 설계
 
 - [온프레미스 솔루션의 퍼블릭 클라우드 공통 아키텍처 설계](cloud/01-public-cloud-nlb-alb-architecture.md)
+
+### [project/](project/) - 프로젝트 리딩, PM
+
+- [대규모 고객사 솔루션 신규 구축 프로젝트 리딩](project/01-solution-installation-project-lead.md)
