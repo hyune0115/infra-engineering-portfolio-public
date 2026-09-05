@@ -1,7 +1,5 @@
 # GitLab Project Access Token 기반 인증 재설계
 
-TA Unit
-
 ## 1. 배경
 
 ### 가. 현행 업데이트 구조

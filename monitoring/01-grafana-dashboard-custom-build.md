@@ -1,7 +1,5 @@
 # Prometheus Stack + Grafana 커스텀 모니터링 대시보드 구축
 
-TA Unit
-
 ## 1. 배경
 
 ### 가. 목적

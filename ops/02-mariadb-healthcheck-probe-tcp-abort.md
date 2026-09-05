@@ -1,7 +1,5 @@
 # MariaDB Pod Healthcheck Probe 개선 — TCP → Exec 전환
 
-TA Unit
-
 ## 1. 배경
 
 ### 가. 증상

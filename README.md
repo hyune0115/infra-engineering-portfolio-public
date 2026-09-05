@@ -47,6 +47,8 @@
 - [컨테이너 레지스트리 CDN 매니페스트 캐싱 이슈 대응](k8s-ops/02-registry-cdn-manifest-cache-bypass.md)
 - [고객사 NAC 장비 ARP 갱신 × Ingress 개별 IP 광고 충돌 대응](k8s-ops/03-nac-arp-mac-floating-conflict.md)
 - [Traefik 서비스 설정 누락으로 인한 클라이언트 IP 미보존](k8s-ops/04-traefik-service-externaltrafficpolicy-missing.md)
+- [RHEL9 전환에 따른 cgroup v2 미인식으로 인한 JVM 애플리케이션 OOM](k8s-ops/05-redhat9-cgroupv2-jdk-oom.md)
+- [kube-proxy 모드 IPVS Deprecated 대응 — IPVS에서 iptables로 재전환](k8s-ops/06-kubeproxy-mode-ipvs-to-iptables.md)
 
 ### [ops/](ops/) - 운영, 장애대응
 

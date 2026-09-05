@@ -1,7 +1,5 @@
 # ArgoCD-GitLab 연쇄 장애 대응
 
-TA Unit
-
 ## 1. 배경
 
 ### 가. 현상
