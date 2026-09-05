@@ -22,15 +22,24 @@
 
 - **네트워크 계층** — 고객사 NAC 장비의 주기적 ARP 갱신과 Ingress의 노드별 개별 MAC 광고가
   충돌해 발생한 서비스 접속 장애를, 패킷 덤프 기반으로 여러 원인 후보를 배제해가며 근본 원인을
-  특정하고 MetalLB 도입으로 해결 ([자세히](k8s-ops/03-nac-arp-mac-floating-conflict.md))
+  특정하고 MetalLB 도입으로 해결 ([자세히](k8s-ops/01-nac-arp-mac-floating-conflict.md))
 - **애플리케이션-인프라 연계 계층** — 대량 reconciliation이 유발한 GitLab 부하 → HTTP 502 →
   git credential 자동 삭제로 이어지는 연쇄 장애 구조를 ArgoCD/GitLab 로그 교차 분석으로 규명
   ([자세히](cicd/02-argocd-gitlab-cascading-failure.md))
 - **OS/프로세스 계층** — TCP probe가 MySQL 핸드셰이크 없이 연결을 열고 닫아 발생하던 Aborted
   connect 로그 폭증의 원인을 규명하고, exec 기반 probe로 전환해 근본적으로 해결
-  ([자세히](ops/02-mariadb-healthcheck-probe-tcp-abort.md))
+  ([자세히](k8s-ops/06-mariadb-healthcheck-probe-tcp-abort.md))
 
 ## 목차
+
+### [k8s-ops/](k8s-ops/) - Kubernetes 인프라 운영, 장애대응
+
+- [고객사 NAC 장비 ARP 갱신 × Ingress 개별 IP 광고 충돌 대응](k8s-ops/01-nac-arp-mac-floating-conflict.md)
+- [Traefik 서비스 설정 누락으로 인한 클라이언트 IP 미보존](k8s-ops/02-traefik-service-externaltrafficpolicy-missing.md)
+- [RHEL9 전환에 따른 cgroup v2 미인식으로 인한 JVM 애플리케이션 OOM](k8s-ops/03-redhat9-cgroupv2-jdk-oom.md)
+- [kube-proxy 모드 IPVS Deprecated 대응 — IPVS에서 iptables로 재전환](k8s-ops/04-kubeproxy-mode-ipvs-to-iptables.md)
+- [Go 애플리케이션 재기동 시 좀비 프로세스/CPU 부하 대응](k8s-ops/05-go-zombie-process-graceful-shutdown.md)
+- [MariaDB Pod Healthcheck Probe 개선 — TCP → Exec 전환](k8s-ops/06-mariadb-healthcheck-probe-tcp-abort.md)
 
 ### [cicd/](cicd/) - CI/CD, GitOps
 
@@ -41,19 +50,10 @@
 
 - [Kubernetes 클러스터 구성 자동화 4-Tier 리팩토링](iaas/01-k8s-install-automation-refactor.md)
 
-### [k8s-ops/](k8s-ops/) - Kubernetes 인프라 운영, 장애대응
-
-- [정전/유지보수 대응 서비스 중지·재기동 자동화](k8s-ops/01-service-maintenance-automation.md)
-- [컨테이너 레지스트리 CDN 매니페스트 캐싱 이슈 대응](k8s-ops/02-registry-cdn-manifest-cache-bypass.md)
-- [고객사 NAC 장비 ARP 갱신 × Ingress 개별 IP 광고 충돌 대응](k8s-ops/03-nac-arp-mac-floating-conflict.md)
-- [Traefik 서비스 설정 누락으로 인한 클라이언트 IP 미보존](k8s-ops/04-traefik-service-externaltrafficpolicy-missing.md)
-- [RHEL9 전환에 따른 cgroup v2 미인식으로 인한 JVM 애플리케이션 OOM](k8s-ops/05-redhat9-cgroupv2-jdk-oom.md)
-- [kube-proxy 모드 IPVS Deprecated 대응 — IPVS에서 iptables로 재전환](k8s-ops/06-kubeproxy-mode-ipvs-to-iptables.md)
-
 ### [ops/](ops/) - 운영, 장애대응
 
-- [Go 애플리케이션 재기동 시 좀비 프로세스/CPU 부하 대응](ops/01-go-zombie-process-graceful-shutdown.md)
-- [MariaDB Pod Healthcheck Probe 개선 — TCP → Exec 전환](ops/02-mariadb-healthcheck-probe-tcp-abort.md)
+- [정전/유지보수 대응 서비스 중지·재기동 자동화](ops/01-service-maintenance-automation.md)
+- [컨테이너 레지스트리 CDN 매니페스트 캐싱 이슈 대응](ops/02-registry-cdn-manifest-cache-bypass.md)
 
 ### [monitoring/](monitoring/) - 모니터링, 관측성
 
